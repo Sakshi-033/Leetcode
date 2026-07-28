@@ -1,0 +1,23 @@
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+        int m = accounts.length;
+        
+        int index = 0;
+        int[] arr = new int[m];
+        for(int[] i : accounts){
+            int s = 0;
+            for(int j : i){
+                s = s+j;
+                
+            }
+            arr[index] = s;
+            index++;
+            
+        }
+
+        int k = java.util.Arrays.stream(arr).max().getAsInt();
+        return k;
+
+        
+    }
+}
