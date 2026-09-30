@@ -1,0 +1,19 @@
+class Solution {
+    int ans = 0;
+
+    public void DFS(TreeNode root, TreeNode parent, TreeNode gp) {
+        if (root == null) return;
+
+        if (gp != null && gp.val % 2 == 0) {
+            ans += root.val;
+        }
+
+        DFS(root.left, root, parent);
+        DFS(root.right, root, parent);
+    }
+
+    public int sumEvenGrandparent(TreeNode root) {
+        DFS(root, null, null);
+        return ans;
+    }
+}
