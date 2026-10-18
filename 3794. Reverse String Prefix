@@ -1,0 +1,21 @@
+class Solution {
+    public String reversePrefix(String s, int k) {
+        int n = s.length();
+        String one = "";
+        String two = "";
+        for(int i = 0 ; i < n ; i ++){
+            if(i<k){
+                one += s.charAt(i);
+            }
+            else{
+                two +=s.charAt(i);
+            }
+
+           
+        }
+        String rev = new StringBuilder(one).reverse().toString();
+      
+        return (rev+two);
+        
+    }
+}
