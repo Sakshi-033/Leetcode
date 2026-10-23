@@ -1,0 +1,39 @@
+
+import java.util.*;
+
+class Solution {
+    ArrayList<Integer> arr = new ArrayList<>();
+
+    public void TS(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        arr.add(root.val);
+        TS(root.left);
+        TS(root.right);
+    }
+
+    public boolean findTarget(TreeNode root, int k) {
+        arr.clear();
+        TS(root);
+        Collections.sort(arr);
+
+        int s = 0;
+        int e = arr.size() - 1;
+
+        while (s < e) {
+            int sum = arr.get(s) + arr.get(e);
+
+            if (sum == k) {
+                return true;
+            } else if (sum < k) {
+                s++;
+            } else {
+                e--;
+            }
+        }
+
+        return false;
+    }
+}
