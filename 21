@@ -1,0 +1,38 @@
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        LinkedList<Integer> ans = new LinkedList<>();
+        ListNode head1 = list1;
+        ListNode head2 = list2;
+
+        while(head1 != null && head2 != null) {
+            if(head1.val <= head2.val) {
+                ans.add(head1.val);
+                head1 = head1.next;
+            }
+            else {
+                ans.add(head2.val);
+                head2 = head2.next;
+            }
+        }
+
+        while(head1 != null) {
+            ans.add(head1.val);
+            head1 = head1.next;
+        }
+
+        while(head2 != null) {
+            ans.add(head2.val);
+            head2 = head2.next;
+        }
+
+        ListNode dummy = new ListNode(0);
+        ListNode curr = dummy;
+
+        for(int i : ans) {
+            curr.next = new ListNode(i);
+            curr = curr.next;
+        }
+
+        return dummy.next;
+    }
+}
