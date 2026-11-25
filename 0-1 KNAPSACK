@@ -1,0 +1,28 @@
+class Solution {
+    public int solve(int i, int wt[], int val[], int w, int ans[][]) {
+        if (i == 0 || w == 0) {
+            return 0;
+        }
+        
+        if (ans[i][w] != -1) {
+            return ans[i][w];
+        }
+
+        int nt = solve(i - 1, wt, val, w, ans);
+        int take = 0;
+        if (wt[i - 1] <= w) {
+            take = val[i - 1] + solve(i - 1, wt, val, w - wt[i - 1], ans);
+        }
+        return ans[i][w] = Math.max(take, nt);
+    }
+
+    public int knapsack(int W, int val[], int wt[]) {
+        int n = wt.length;
+       
+        int[][] ans = new int[n + 1][W + 1];
+        for (int[] row : ans) {
+            Arrays.fill(row, -1);
+        }
+        return solve(n, wt, val, W, ans);
+    }
+}
